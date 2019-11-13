@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+    backend:
+      container_name: "spring-boot-webflux-app"
+      build:
+        context: .
+      ports:
+        - "8080:8080"
+      restart: always
+      depends_on: 
+        - database
+      environment:
+        - HOST=localhost
+      networks:
+        - network-backend
+
+    database:
+      image: postgres:alpine
+      container_name: "spring-boot-webflux-db"
+      environment:
+        - POSTGRES_PASSWORD=password
+        - POSTGRES_USER=postgres
+        - POSTGRES_DB=webflux-db
+      networks:
+        - network-backend
+networks: 
+    network-backend:
+        driver: bridge
