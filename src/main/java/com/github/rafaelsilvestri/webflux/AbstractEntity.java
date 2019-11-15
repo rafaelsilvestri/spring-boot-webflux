@@ -3,13 +3,14 @@ package com.github.rafaelsilvestri.webflux;
 import org.springframework.data.domain.Persistable;
 
 /**
+ * Abstract Entity
+ *
+ * @param <T> the ID type
  * @author Rafael Silvestri
  */
-public abstract class AbstractEntity<ID> implements Persistable<ID> {
+public abstract class AbstractEntity<T> implements Persistable<T> {
 
-  public abstract ID getId();
-
-  public abstract void setId(ID id);
+  public abstract void setId(T id);
 
   @Override
   public boolean isNew() {
@@ -35,7 +36,7 @@ public abstract class AbstractEntity<ID> implements Persistable<ID> {
       return false;
     }
 
-    AbstractEntity<ID> other = (AbstractEntity<ID>) obj;
+    AbstractEntity<T> other = (AbstractEntity<T>) obj;
     if (getId() == null) {
       if (other.getId() != null) {
         return false;

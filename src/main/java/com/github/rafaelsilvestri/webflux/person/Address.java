@@ -23,9 +23,6 @@ public class Address implements Persistable<UUID> {
   @Column("zip_code")
   private String zipCode;
 
-  public Address() {
-  }
-
   @Override
   public boolean isNew() {
     return id == null;

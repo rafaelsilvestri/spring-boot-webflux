@@ -26,9 +26,6 @@ public class Person extends AbstractEntity<UUID> {
   @Column("address_id")
   private UUID addressId;
 
-  public Person() {
-  }
-
   @Override
   public boolean isNew() {
     return id == null;
