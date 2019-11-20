@@ -1,4 +1,4 @@
-package com.github.rafaelsilvestri.webflux.hello;
+package com.github.rafaelsilvestri.webflux.health;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
@@ -14,20 +14,23 @@ import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.ServerResponse;
 
 /**
- * Hello World router
+ * Health Check Router
  *
  * @author Rafael Silvestri
  */
 @Configuration
-public class HelloV1Router {
+public class HealthCheckRouter {
 
   @Value("${server.servlet.context-path}")
   private String contextPath;
 
+  /**
+   * Health Check Route to version 1
+   */
   @Bean
-  public RouterFunction<ServerResponse> helloRoute(HelloV1Handler handler) {
+  public RouterFunction<ServerResponse> healthCheckV1Router(HealthCheckV1Handler handler) {
     return nest(accept(APPLICATION_JSON),
         nest(path(contextPath),
-            route(GET("/v1/hello"), handler::get)));
+            route(GET("/v1/health"), handler::get)));
   }
 }

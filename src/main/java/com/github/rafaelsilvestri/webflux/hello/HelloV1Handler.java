@@ -8,6 +8,11 @@ import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
 
+/**
+ * Hello World handler
+ *
+ * @author Rafael Silvestri
+ */
 @Component
 public class HelloV1Handler {
 
