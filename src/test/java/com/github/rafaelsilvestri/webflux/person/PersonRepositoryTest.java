@@ -5,19 +5,23 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.github.rafaelsilvestri.webflux.PersistenceConfig;
+import com.github.rafaelsilvestri.webflux.WebfluxApplication;
 import java.util.Optional;
 import java.util.UUID;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
 
 @ExtendWith(SpringExtension.class)
-@Transactional
+@SpringBootTest(classes = WebfluxApplication.class)
 @ContextConfiguration(classes = PersistenceConfig.class)
+@Transactional
 public class PersonRepositoryTest {
 
   @Autowired

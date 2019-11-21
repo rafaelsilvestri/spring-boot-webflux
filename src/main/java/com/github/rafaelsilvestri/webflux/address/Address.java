@@ -1,5 +1,6 @@
-package com.github.rafaelsilvestri.webflux.person;
+package com.github.rafaelsilvestri.webflux.address;
 
+import com.github.rafaelsilvestri.webflux.AbstractEntity;
 import java.util.UUID;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.domain.Persistable;
@@ -12,7 +13,7 @@ import org.springframework.data.relational.core.mapping.Table;
  * @author Rafael Silvestri
  */
 @Table("address")
-public class Address implements Persistable<UUID> {
+public class Address extends AbstractEntity<UUID> {
 
   @Id
   private UUID id;

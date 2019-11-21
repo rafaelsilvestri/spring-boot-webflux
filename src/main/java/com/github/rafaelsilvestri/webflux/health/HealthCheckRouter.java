@@ -1,6 +1,7 @@
 package com.github.rafaelsilvestri.webflux.health;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON;
+import static org.springframework.http.MediaType.APPLICATION_XML;
 import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
 import static org.springframework.web.reactive.function.server.RequestPredicates.accept;
 import static org.springframework.web.reactive.function.server.RequestPredicates.path;
@@ -29,8 +30,9 @@ public class HealthCheckRouter {
    */
   @Bean
   public RouterFunction<ServerResponse> healthCheckV1Router(HealthCheckV1Handler handler) {
-    return nest(accept(APPLICATION_JSON),
+    return nest(accept(APPLICATION_JSON, APPLICATION_XML),
         nest(path(contextPath),
-            route(GET("/v1/health"), handler::get)));
+            route(GET("/v1/statuscheck"), handler::get)
+                .andRoute(GET("/v1/resourcecheck"), handler::get)));
   }
 }

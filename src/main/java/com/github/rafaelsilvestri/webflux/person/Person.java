@@ -26,9 +26,13 @@ public class Person extends AbstractEntity<UUID> {
   @Column("address_id")
   private UUID addressId;
 
-  @Override
-  public boolean isNew() {
-    return id == null;
+  public Person() {
+  }
+
+  public Person(UUID id, String firstName, String lastName) {
+    this.id = id;
+    this.firstName = firstName;
+    this.lastName = lastName;
   }
 
   @Override
@@ -63,5 +67,15 @@ public class Person extends AbstractEntity<UUID> {
 
   public void setAddressId(UUID addressId) {
     this.addressId = addressId;
+  }
+
+  @Override
+  public String toString() {
+    return "Person{" +
+        "id=" + id +
+        ", firstName='" + firstName + '\'' +
+        ", lastName='" + lastName + '\'' +
+        ", addressId=" + addressId +
+        '}';
   }
 }
