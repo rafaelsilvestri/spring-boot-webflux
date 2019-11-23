@@ -32,5 +32,5 @@ In order to apply the schema to the database created by docker-compose spec, you
 
 ##### Runing a specific simulations
 ```
-./gradlew gatlingRun-[SimulationClass] -Dusers=2 -Dduration=30 -Dbaseurl=http://localhost:8080/api/webflux/hello
+./gradlew gatlingRun-[SimulationClass] -Dusers=2 -Dduration=30 -Dbaseurl=http://localhost:8080/hello
 ```
