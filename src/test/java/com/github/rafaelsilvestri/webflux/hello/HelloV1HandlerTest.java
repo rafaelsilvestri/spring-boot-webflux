@@ -5,7 +5,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.http.MediaType;
@@ -21,9 +20,6 @@ class HelloV1HandlerTest {
   @Autowired
   private ApplicationContext context;
 
-  @Value("${server.servlet.context-path}")
-  private String contextPath;
-
   private WebTestClient webTestClient;
 
   @BeforeEach
@@ -34,7 +30,7 @@ class HelloV1HandlerTest {
   @Test
   public void testGetRoute() {
     webTestClient.get()
-        .uri(contextPath + "/v1/hello")
+        .uri("/v1/hello")
         .accept(MediaType.APPLICATION_JSON)
         .exchange()
         .expectStatus().isOk()

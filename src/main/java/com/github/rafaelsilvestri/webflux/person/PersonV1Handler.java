@@ -45,4 +45,11 @@ public class PersonV1Handler {
         .doOnSuccess(e -> log.info("Success!!! {}", e.statusCode()));
   }
 
+  /**
+   * Returns all entries
+   */
+  public Mono<ServerResponse> get(ServerRequest serverRequest) {
+    throw new IllegalStateException("Not implemented yet");
+  }
+
 }

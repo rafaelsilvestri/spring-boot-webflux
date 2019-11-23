@@ -2,7 +2,7 @@ version: '3'
 
 services:
 #    backend:
-#      container_name: "spring-boot-webflux-app"
+#      container_name: "spring-webflux-app"
 #      build:
 #        context: .
 #      ports:
