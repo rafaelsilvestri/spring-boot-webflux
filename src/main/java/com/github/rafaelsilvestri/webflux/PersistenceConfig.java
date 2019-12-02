@@ -1,7 +1,5 @@
 package com.github.rafaelsilvestri.webflux;
 
-import java.util.UUID;
-import javax.sql.DataSource;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationListener;
@@ -15,10 +13,14 @@ import org.springframework.data.relational.core.mapping.event.BeforeSaveEvent;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.ReactiveTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+import javax.sql.DataSource;
+import java.util.UUID;
 
 @Configuration
 @EnableJdbcRepositories
+@EnableTransactionManagement
 @PropertySources({@PropertySource("classpath:application.properties"),
     @PropertySource(value = "file:${config.file}", ignoreResourceNotFound = true)})
 public class PersistenceConfig extends AbstractJdbcConfiguration {

@@ -1,11 +1,11 @@
 package com.github.rafaelsilvestri.webflux.address;
 
 import com.github.rafaelsilvestri.webflux.AbstractEntity;
-import java.util.UUID;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.domain.Persistable;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
+
+import java.util.UUID;
 
 /**
  * Address entity

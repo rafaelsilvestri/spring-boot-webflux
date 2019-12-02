@@ -28,6 +28,9 @@ dependencies {
 
     implementation("org.springframework.data:spring-data-jdbc:1.1.1.RELEASE")
 
+    //implementation("com.fasterxml.jackson.core:jackson-core:2.10.1")
+    implementation("javax.xml.bind:jaxb-api:2.1")
+
     implementation("commons-dbcp:commons-dbcp:1.4")
     implementation("org.postgresql:postgresql:42.2.8")
 
@@ -51,7 +54,7 @@ test {
 // ./gradlew flywayMigrate -i -Pflyway.schemas=public -Pflyway.user=${DB_USER} -Pflyway.password=${DB_PWD} -Pflyway.url=${DB_HOST}"
 flyway {
     driver = 'org.postgresql.Driver'
-    url = 'jdbc:postgresql://192.168.99.100:5432/webflux-db'
+    url = 'jdbc:postgresql://localhost:5432/webflux-db'
     user = 'postgres'
     password = 'password'
 }

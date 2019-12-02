@@ -1,4 +1,7 @@
 # About
+#### WIP
+This Work still In Progress
+
 This is a sandbox project to play with spring framework, specially reactor netty and other tools to 
 speed up the development of microservices.
 
@@ -6,7 +9,8 @@ speed up the development of microservices.
 In order to run the whole environment locally you can start a docker-compose by typing the command 
 bellow:
 ```
-docker-compose up
+./gradlew clean build
+docker-compose up --build
 ```
 
 
@@ -34,3 +38,14 @@ In order to apply the schema to the database created by docker-compose spec, you
 ```
 ./gradlew gatlingRun-[SimulationClass] -Dusers=2 -Dduration=30 -Dbaseurl=http://localhost:8080/hello
 ```
+
+##### Testing Endpoints
+```
+curl -d "@person-data.json" -H "Content-Type: application/json" -X POST http://localhost:8080/v1/person
+```
+
+```
+curl -H "Content-Type: application/json" -X GET http://localhost:8080/v1/person |jq
+```
+
+
