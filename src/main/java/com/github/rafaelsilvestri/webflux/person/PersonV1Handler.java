@@ -4,11 +4,14 @@ import static org.springframework.web.reactive.function.server.ServerResponse.ok
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import reactor.core.scheduler.Scheduler;
+import reactor.core.scheduler.Schedulers;
 
 /**
  * A functional style of a "Person handler"
@@ -60,13 +63,19 @@ public class PersonV1Handler {
     }
 
     /**
-     * Returns all entries
+     * Returns all entries paged
      */
     Mono<ServerResponse> get(ServerRequest serverRequest) {
-        Flux<PersonV1Dto> dto = Mono.just(personService.findAll())
-                .flatMapIterable(entity -> entity)
-                .map(entity -> personConverter.toDto(entity));
-        return ok().body(dto, PersonV1Dto.class);
+        int page = serverRequest.queryParam("page").map(Integer::valueOf).orElse(0);
+        int size = serverRequest.queryParam("size").map(Integer::valueOf).orElse(10);
+        String sortBy = serverRequest.queryParam("sortBy").orElse("firstName");
+        String sortDirection = serverRequest.queryParam("sortDirection").orElse("asc");
+
+         Mono<Page<Person>> result =
+                 Mono.fromCallable(() -> personService.findAll(page,size,sortBy, sortDirection))
+                .subscribeOn(Schedulers.boundedElastic());
+
+        return ok().body(result, Page.class);
     }
 
 }

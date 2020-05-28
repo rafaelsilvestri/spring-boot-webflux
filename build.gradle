@@ -1,5 +1,5 @@
 plugins {
-    id 'org.springframework.boot' version '2.2.0.RELEASE'
+    id 'org.springframework.boot' version '2.3.0.RELEASE'
     id 'io.spring.dependency-management' version '1.0.8.RELEASE'
     id 'org.flywaydb.flyway' version '6.0.4'
     id 'com.github.lkishalmi.gatling' version '3.0.2'
@@ -26,7 +26,7 @@ dependencies {
     // Use Log4j2 instead
     //implementation 'org.springframework.boot:spring-boot-starter-log4j2'
 
-    implementation("org.springframework.data:spring-data-jdbc:1.1.1.RELEASE")
+    implementation("org.springframework.data:spring-data-jdbc:2.0.0.RELEASE")
 
     //implementation("com.fasterxml.jackson.core:jackson-core:2.10.1")
     implementation("javax.xml.bind:jaxb-api:2.1")

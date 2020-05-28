@@ -48,4 +48,6 @@ curl -d "@person-data.json" -H "Content-Type: application/json" -X POST http://l
 curl -H "Content-Type: application/json" -X GET http://localhost:8080/v1/person |jq
 ```
 
-
+```
+curl -H "Content-Type: application/json" -X GET http://localhost:8080/v1/person?page=0&size=5&sortBy=firstName&sortDirection=desc |jq
+```

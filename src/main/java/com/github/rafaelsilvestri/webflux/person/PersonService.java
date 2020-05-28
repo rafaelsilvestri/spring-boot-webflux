@@ -1,7 +1,9 @@
 package com.github.rafaelsilvestri.webflux.person;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -58,8 +60,16 @@ public class PersonService {
 
     /**
      * Returns all entries
+     *
+     * @param page          page number (zero-based).
+     * @param size          number of items to be returned.
+     * @param sortBy        sort fields comma-separated
+     * @param sortDirection sort direction (asc,desc)
+     * @return paged items.
      */
-    public Iterable<Person> findAll() {
-        return personRepository.findAll();
+    public Page<Person> findAll(int page, int size, String sortBy, String sortDirection) {
+        Pageable pageable = PageRequest.of(page, size,
+                Sort.Direction.fromString(sortDirection), sortBy.split(","));
+        return personRepository.findAll(pageable);
     }
 }
